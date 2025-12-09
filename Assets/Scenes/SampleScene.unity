@@ -454,44 +454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f617e10028bede048b4ca272c338b67c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShrekController
-  walkSpeed: 3
-  runSpeed: 6
-  rotationSpeed: 10
-  jumpForce: 5
-  groundCheckDistance: 0.2
-  modelTransform: {fileID: 0}
-  groundCheck: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  movementAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 6422b5c1-9553-4c78-9aef-3b71304911b3
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  jumpAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f6d7cb71-65f9-42d8-924d-891ac0000e69
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  runAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f30e7970-603a-48b1-936d-bd17a9b1f8cf
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  animator: {fileID: 985313408}
 --- !u!54 &985313407
 Rigidbody:
   m_ObjectHideFlags: 0

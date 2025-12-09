@@ -1,149 +1,212 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // Добавьте эту строку
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
 public class ShrekController : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    [SerializeField] private float walkSpeed = 3f;
-    [SerializeField] private float runSpeed = 6f;
-    [SerializeField] private float rotationSpeed = 10f;
-    [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private float groundCheckDistance = 0.2f;
-    
-    [Header("References")]
-    [SerializeField] private Transform modelTransform;
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundLayer;
-    
-    [Header("Input Actions")]
-    [SerializeField] private InputAction movementAction;
-    [SerializeField] private InputAction jumpAction;
-    [SerializeField] private InputAction runAction;
-    
+    private Animator animator;
     private Rigidbody rb;
-    private Vector3 movement;
-    private bool isGrounded;
-    public Animator animator;
-    private float currentSpeed;
-    private bool isRunning;
-    
+
+    [Header("Movement Settings")]
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float jumpForce = 8f;
+    [SerializeField] private float groundCheckDistance = 0.2f;
+
+    [Header("Ground Check")]
+    [SerializeField] private Transform groundCheckPoint;
+    [SerializeField] private LayerMask groundLayer;
+
+    private bool isRunning = false;
+    private bool isJumping = false;
+    private bool isOnGround = true;
+
+    // Для хранения ввода движения
+    private Vector2 moveInput = Vector2.zero;
+
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        
-        if (modelTransform == null)
-            modelTransform = transform.Find("Model") ?? transform;
-            
+
         if (animator == null)
-            animator = GetComponentInChildren<Animator>();
-
-        animator.SetBool("isRunning", false);
-
-        if (groundCheck == null)
         {
-            GameObject groundCheckObj = new GameObject("GroundCheck");
-            groundCheckObj.transform.parent = transform;
-            groundCheckObj.transform.localPosition = new Vector3(0, -1f, 0);
-            groundCheck = groundCheckObj.transform;
+            Debug.LogError("Animator component not found!");
         }
-        
-        groundLayer = LayerMask.GetMask("Ground");
-        currentSpeed = walkSpeed;
-        
-        // Включаем Input Actions
-        movementAction.Enable();
-        jumpAction.Enable();
-        runAction.Enable();
+
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody component not found!");
+        }
+
+        // Если не задана точка проверки земли, используем центр объекта
+        if (groundCheckPoint == null)
+        {
+            groundCheckPoint = transform;
+        }
     }
-    
-    void OnDestroy()
-    {
-        // Отключаем Input Actions при уничтожении объекта
-        movementAction.Disable();
-        jumpAction.Disable();
-        runAction.Disable();
-    }
-    
+
     void Update()
     {
         // Проверка земли
-        isGrounded = Physics.CheckSphere(
-            groundCheck.position, 
-            groundCheckDistance, 
-            groundLayer
-        );
-        
-        // Получаем ввод из нового Input System
-        Vector2 moveInput = movementAction.ReadValue<Vector2>();
+        CheckGround();
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            animator.SetBool("isRunning", true);
-            Debug.Log("Key down");
-        }
-        else if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            Debug.Log("Key up");
-            animator.SetBool("isRunning", false);
-        }
+        // Обработка ввода клавиатуры
+        HandleKeyboardInput();
 
-        //// Проверка бега
-        //isRunning = runAction.IsPressed();
-        //currentSpeed = isRunning ? runSpeed : walkSpeed;
-        
-        //// Движение
-        //movement = new Vector3(moveInput.x, 0, moveInput.y).normalized;
-        
-        //// Прыжок
-        //if (jumpAction.triggered && isGrounded)
-        //{
-        //    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        //    Debug.Log("Прыжок!");
-        //}
-        
-        //// Обновление анимаций
-        //UpdateAnimations();
+        // Обновление анимаций
+        UpdateAnimations();
+
+        // Движение
+        MoveCharacter();
+
+        Debug.Log("isRunning: " + isRunning + " isJumping: " + isJumping + " isOnGround: " + isOnGround);
     }
-    
-    void FixedUpdate()
+
+    void CheckGround()
     {
-        if (movement.magnitude >= 0.1f)
+        // Используем Raycast для проверки земли под ногами
+        RaycastHit hit;
+        Vector3 rayStart = groundCheckPoint.position;
+        Vector3 rayDirection = Vector3.down;
+
+        // Учитываем размер персонажа
+        float checkDistance = groundCheckDistance;
+        if (GetComponent<Collider>() != null)
         {
-            // Движение
-            Vector3 moveDirection = transform.TransformDirection(movement);
-            rb.MovePosition(rb.position + moveDirection * currentSpeed * Time.fixedDeltaTime);
-            
-            // Поворот модели в сторону движения
-            Quaternion targetRotation = Quaternion.LookRotation(movement);
-            modelTransform.rotation = Quaternion.Slerp(
-                modelTransform.rotation, 
-                targetRotation, 
-                rotationSpeed * Time.fixedDeltaTime
-            );
+            checkDistance += GetComponent<Collider>().bounds.extents.y;
+        }
+
+        // Бросаем луч вниз для проверки земли
+        bool hitGround = Physics.Raycast(rayStart, rayDirection, out hit, checkDistance, groundLayer);
+
+        // Визуализация луча в редакторе (только в Play mode)
+        Debug.DrawRay(rayStart, rayDirection * checkDistance, hitGround ? Color.green : Color.red);
+
+        isOnGround = hitGround;
+
+        // Если мы падаем и касаемся земли, сбрасываем прыжок
+        if (isOnGround && rb.linearVelocity.y <= 0.1f)
+        {
+            isJumping = false;
         }
     }
-    
+
+    void HandleKeyboardInput()
+    {
+        Keyboard keyboard = Keyboard.current;
+
+        if (keyboard != null)
+        {
+            // Собираем ввод движения в вектор
+            moveInput = Vector2.zero;
+
+            // Стрелочки
+            if (keyboard.upArrowKey.isPressed) moveInput.y += 1;
+            if (keyboard.downArrowKey.isPressed) moveInput.y -= 1;
+            if (keyboard.leftArrowKey.isPressed) moveInput.x -= 1;
+            if (keyboard.rightArrowKey.isPressed) moveInput.x += 1;
+
+            // WASD (имеет приоритет)
+            if (keyboard.wKey.isPressed) moveInput.y += 1;
+            if (keyboard.sKey.isPressed) moveInput.y -= 1;
+            if (keyboard.aKey.isPressed) moveInput.x -= 1;
+            if (keyboard.dKey.isPressed) moveInput.x += 1;
+
+            // Нормализуем вектор, если длина > 1 (диагональное движение)
+            if (moveInput.magnitude > 1f)
+            {
+                moveInput.Normalize();
+            }
+
+            // Проверяем, нужно ли бежать (есть ли ввод движения)
+            bool shouldRun = moveInput.magnitude > 0.1f;
+
+            // Обработка прыжка
+            if (keyboard.spaceKey.wasPressedThisFrame && isOnGround && !isJumping)
+            {
+                Jump();
+            }
+
+            // Обновляем состояние бега
+            if (shouldRun != isRunning)
+            {
+                isRunning = shouldRun;
+            }
+        }
+    }
+
     void UpdateAnimations()
     {
-        if (animator == null) return;
-        
-        bool isMoving = movement.magnitude >= 0.1f;
-        
-        // Используем правильные имена параметров
-        animator.SetBool("IsWalking", isMoving && !isRunning);
-        animator.SetBool("isRunning", isMoving && isRunning);
-        
-        // Для отладки
-        Debug.Log($"Anim - Moving: {isMoving}, Running: {isRunning}");
+        if (animator != null)
+        {
+            animator.SetBool("isRunning", isRunning);
+            animator.SetBool("isJumping", isJumping);
+        }
     }
-    
+
+    void MoveCharacter()
+    {
+        if (moveInput.magnitude > 0.1f)
+        {
+            // Создаем вектор движения
+            Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y);
+
+            // Преобразуем локальное направление в мировые координаты
+            movement = transform.TransformDirection(movement);
+
+            // Двигаем Rigidbody
+            Vector3 targetVelocity = movement * moveSpeed;
+            targetVelocity.y = rb.linearVelocity.y; // Сохраняем вертикальную скорость для прыжка/падения
+
+            // Плавное изменение скорости
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, targetVelocity, Time.deltaTime * 10f);
+
+            // Поворачиваем персонажа в сторону движения
+            if (movement.magnitude > 0.1f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(new Vector3(movement.x, 0, movement.z));
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            }
+        }
+        else
+        {
+            // Если нет ввода, постепенно останавливаем горизонтальное движение
+            Vector3 currentVelocity = rb.linearVelocity;
+            currentVelocity.x = Mathf.Lerp(currentVelocity.x, 0, Time.deltaTime * 10f);
+            currentVelocity.z = Mathf.Lerp(currentVelocity.z, 0, Time.deltaTime * 10f);
+            rb.linearVelocity = currentVelocity;
+        }
+    }
+
+    void Jump()
+    {
+        if (isOnGround && !isJumping)
+        {
+            // Применяем силу прыжка
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isJumping = true;
+
+            // Обновляем анимацию немедленно
+            if (animator != null)
+            {
+                animator.SetBool("isJumping", true);
+            }
+        }
+    }
+
+    // Опционально: для более точного контроля можно использовать FixedUpdate для физики
+    void FixedUpdate()
+    {
+        // Дополнительная обработка физики может быть здесь
+    }
+
+    // Визуализация точки проверки земли в редакторе
     void OnDrawGizmosSelected()
     {
-        if (groundCheck != null)
+        if (groundCheckPoint != null)
         {
-            Gizmos.color = isGrounded ? Color.green : Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckDistance);
+            Gizmos.color = isOnGround ? Color.green : Color.red;
+            Gizmos.DrawSphere(groundCheckPoint.position, 0.1f);
+            Gizmos.DrawLine(groundCheckPoint.position, groundCheckPoint.position + Vector3.down * groundCheckDistance);
         }
     }
 }
