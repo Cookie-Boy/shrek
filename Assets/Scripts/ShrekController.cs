@@ -7,9 +7,10 @@ public class ShrekController : MonoBehaviour
     private Rigidbody rb;
 
     [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 35f;
     [SerializeField] private float jumpForce = 8f;
     [SerializeField] private float groundCheckDistance = 0.2f;
+    [SerializeField] private float rotationSpeed = 4f;
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheckPoint;
@@ -143,40 +144,28 @@ public class ShrekController : MonoBehaviour
         }
     }
 
-    void MoveCharacter()
+void MoveCharacter()
+{
+    // 1. ПОВОРОТ (A/D) - работает всегда
+    if (Mathf.Abs(moveInput.x) > 0.1f)
     {
-        if (moveInput.magnitude > 0.1f)
-        {
-            // Создаем вектор движения
-            Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y);
-
-            // Преобразуем локальное направление в мировые координаты
-            movement = transform.TransformDirection(movement);
-
-            // Двигаем Rigidbody
-            Vector3 targetVelocity = movement * moveSpeed;
-            targetVelocity.y = rb.linearVelocity.y; // Сохраняем вертикальную скорость для прыжка/падения
-
-            // Плавное изменение скорости
-            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, targetVelocity, Time.deltaTime * 10f);
-
-            // Поворачиваем персонажа в сторону движения
-            if (movement.magnitude > 0.1f)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(new Vector3(movement.x, 0, movement.z));
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
-            }
-        }
-        else
-        {
-            // Если нет ввода, постепенно останавливаем горизонтальное движение
-            Vector3 currentVelocity = rb.linearVelocity;
-            currentVelocity.x = Mathf.Lerp(currentVelocity.x, 0, Time.deltaTime * 10f);
-            currentVelocity.z = Mathf.Lerp(currentVelocity.z, 0, Time.deltaTime * 10f);
-            rb.linearVelocity = currentVelocity;
-        }
+        float turnAmount = moveInput.x * rotationSpeed * Time.deltaTime * 100f;
+        transform.Rotate(0, turnAmount, 0);
     }
-
+    
+    // 2. ДВИЖЕНИЕ ВПЕРЁД/НАЗАД (W/S) - относительно взгляда
+    if (Mathf.Abs(moveInput.y) > 0.1f)
+    {
+        // forward = куда смотрит, backward = против взгляда
+        Vector3 moveDirection = transform.forward * -moveInput.y;
+        Vector3 movement = moveDirection * moveSpeed * Time.deltaTime;
+        
+        transform.Translate(movement, Space.World);
+    }
+    
+    // 3. isRunning уже установлен в HandleKeyboardInput()
+    // Анимация обновится в UpdateAnimations()
+}
     void Jump()
     {
         if (isOnGround && !isJumping)
@@ -193,13 +182,6 @@ public class ShrekController : MonoBehaviour
         }
     }
 
-    // Опционально: для более точного контроля можно использовать FixedUpdate для физики
-    void FixedUpdate()
-    {
-        // Дополнительная обработка физики может быть здесь
-    }
-
-    // Визуализация точки проверки земли в редакторе
     void OnDrawGizmosSelected()
     {
         if (groundCheckPoint != null)
