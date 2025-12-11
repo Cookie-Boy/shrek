@@ -235,13 +235,27 @@ public class ShrekController : MonoBehaviour
         }
 
         // 2. ДВИЖЕНИЕ ВПЕРЁД/НАЗАД (W/S) - относительно взгляда
+        //if (Mathf.Abs(moveInput.y) > 0.1f)
+        //{
+        //    // forward = куда смотрит, backward = против взгляда
+        //    Vector3 moveDirection = transform.forward * -moveInput.y;
+        //    Vector3 movement = moveDirection * moveSpeed * Time.deltaTime;
+
+        //    transform.Translate(movement, Space.World);
+        //}
         if (Mathf.Abs(moveInput.y) > 0.1f)
         {
-            // forward = куда смотрит, backward = против взгляда
+            // Направление движения относительно поворота
             Vector3 moveDirection = transform.forward * -moveInput.y;
-            Vector3 movement = moveDirection * moveSpeed * Time.deltaTime;
 
-            transform.Translate(movement, Space.World);
+            // Сила должна быть БОЛЬШОЙ для преодоления трения
+            float forceMultiplier = 100f; // Увеличьте если нужно
+            rb.AddForce(moveDirection * moveSpeed * forceMultiplier * Time.deltaTime);
+
+            Debug.Log($"Applying force: {moveDirection * moveSpeed * forceMultiplier * Time.deltaTime}");
+        } else
+        {
+            rb.AddForce(-rb.GetAccumulatedForce());
         }
     }
 
