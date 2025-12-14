@@ -9,7 +9,7 @@ public class ShrekController : MonoBehaviour
     private Rigidbody rb;
 
     [Header("UI Settings")]
-    [SerializeField] private TextMeshProUGUI ratsEatenText;
+    [SerializeField] private TextMeshProUGUI foodEatenText;
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 35f;
@@ -27,7 +27,7 @@ public class ShrekController : MonoBehaviour
 
     [Header("Item Collection - Система сбора")]
     [SerializeField] private float collectionRadius = 2f; // Радиус сбора
-    [SerializeField] private string itemTag = "Rat"; // Тег собираемых предметов
+    [SerializeField] private string itemTag = "Food"; // Тег собираемых предметов
     [SerializeField] private AudioSource audioSource; // Для звуков
     [SerializeField] private AudioClip eatSound; // Звук поедания
     [SerializeField] private float eatSoundVolume = 0.7f; // Громкость звука
@@ -37,7 +37,7 @@ public class ShrekController : MonoBehaviour
     private bool isOnGround = true;
     private bool isJumpKeyHeld = false;
 
-    private int ratsEaten = 0;
+    private int foodEaten = 0;
 
     // Для хранения ввода движения
     private Vector2 moveInput = Vector2.zero;
@@ -187,6 +187,8 @@ public class ShrekController : MonoBehaviour
                 Jump();
             }
 
+            Debug.Log($"Jump?? {isJumping}, ground? {isOnGround}, space??? {keyboard.spaceKey.wasPressedThisFrame}");
+
             // Обновляем состояние бега
             if (shouldRun != isRunning)
             {
@@ -234,28 +236,18 @@ public class ShrekController : MonoBehaviour
             transform.Rotate(0, turnAmount, 0);
         }
 
-        // 2. ДВИЖЕНИЕ ВПЕРЁД/НАЗАД (W/S) - относительно взгляда
-        //if (Mathf.Abs(moveInput.y) > 0.1f)
-        //{
-        //    // forward = куда смотрит, backward = против взгляда
-        //    Vector3 moveDirection = transform.forward * -moveInput.y;
-        //    Vector3 movement = moveDirection * moveSpeed * Time.deltaTime;
-
-        //    transform.Translate(movement, Space.World);
-        //}
         if (Mathf.Abs(moveInput.y) > 0.1f)
         {
-            // Направление движения относительно поворота
             Vector3 moveDirection = transform.forward * -moveInput.y;
-
-            // Сила должна быть БОЛЬШОЙ для преодоления трения
-            float forceMultiplier = 100f; // Увеличьте если нужно
-            rb.AddForce(moveDirection * moveSpeed * forceMultiplier * Time.deltaTime);
-
-            Debug.Log($"Applying force: {moveDirection * moveSpeed * forceMultiplier * Time.deltaTime}");
-        } else
+            rb.linearVelocity = new Vector3(moveDirection.x * moveSpeed, rb.linearVelocity.y, moveDirection.z * moveSpeed);
+        }
+        else
         {
-            rb.AddForce(-rb.GetAccumulatedForce());
+            rb.linearVelocity = new Vector3(
+                rb.linearVelocity.x * 0.9f, 
+                rb.linearVelocity.y, 
+                rb.linearVelocity.z * 0.9f
+            );
         }
     }
 
@@ -318,11 +310,11 @@ public class ShrekController : MonoBehaviour
         StartCoroutine(DestroyWithDelay(item, 0.05f));
 
         // 3. Обновляем счёт
-        ratsEaten++;
+        foodEaten++;
         UpdateUI();
 
         // 4. Выводим в консоль (опционально)
-        Debug.Log($"Ate rat! Total: {ratsEaten}");
+        Debug.Log($"Ate some food! Total: {foodEaten}");
     }
 
     System.Collections.IEnumerator DestroyWithDelay(GameObject obj, float delay)
@@ -340,9 +332,9 @@ public class ShrekController : MonoBehaviour
 
     void UpdateUI()
     {
-        if (ratsEatenText != null)
+        if (foodEatenText != null)
         {
-            ratsEatenText.text = $"Eaten: {ratsEaten}";
+            foodEatenText.text = $"Eaten: {foodEaten}";
         }
     }
 
