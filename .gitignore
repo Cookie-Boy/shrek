@@ -60,4 +60,5 @@ Thumbs.db
 .vscode/
 
 # Big data 
-Assets/3D/Textures/Midgard Textures/
+Assets/3D/Textures/Midgard Textures/**/*.png
+Assets/3D/Textures/Midgard Textures/**/*.jpg
