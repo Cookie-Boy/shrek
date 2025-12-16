@@ -94,7 +94,6 @@ public class ShrekController : MonoBehaviour
         rb.linearDamping = 0.5f;
         rb.angularDamping = 0.5f;
         rb.useGravity = true;
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     void Update()

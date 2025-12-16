@@ -119,11 +119,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!82 &322252313 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4775637440372336672, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-  m_PrefabInstance: {fileID: 570146886}
-  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &177297773
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 531.586
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 28.93243
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 216.324
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4192792969108450737, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_Name
+      value: ShrekModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345148192296572780, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: eatSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cf987ed615e94364eac6a5cd7ef60e27, type: 3}
+    - target: {fileID: 8345148192296572780, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 01381e6eb8e133d4a869eb12adc51f72, type: 3}
+    - target: {fileID: 8345148192296572780, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1169414445}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
 --- !u!1 &406362527 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1051456453413174702, guid: 52d889e25a1762844a4dc5b14ed6cd2f, type: 3}
@@ -249,75 +313,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &570146886
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 554.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 29.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 351.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.0028211414
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.99999607
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -180.323
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4192792969108450737, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_Name
-      value: ShrekModel
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345148192296572780, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: eatSound
-      value: 
-      objectReference: {fileID: 8300000, guid: cf987ed615e94364eac6a5cd7ef60e27, type: 3}
-    - target: {fileID: 8345148192296572780, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: jumpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 01381e6eb8e133d4a869eb12adc51f72, type: 3}
-    - target: {fileID: 8345148192296572780, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 322252313}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
 --- !u!1001 &678332780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -540,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa01aafb3f91b6459ec96583d40ec86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MushroomJump
-  repelForce: 40
+  repelForce: 120
 --- !u!64 &866588182
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -571,6 +566,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866588179}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &1169414445 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4775637440372336672, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+  m_PrefabInstance: {fileID: 177297773}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1215768296 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1256163237374803732, guid: e4d8b927d7f248749a3fe7114af2d0c9, type: 3}
@@ -735,7 +735,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1791428693}
-  - {fileID: 570146886}
   - {fileID: 496565889}
   - {fileID: 837419236}
   - {fileID: 678332780}
+  - {fileID: 177297773}
