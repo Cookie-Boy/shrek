@@ -1,0 +1,5 @@
+*.unity -text merge=unityyamlmerge
+*.prefab -text merge=unityyamlmerge
+*.asset -text merge=unityyamlmerge
+*.mat -text merge=unityyamlmerge
+*.controller -text merge=unityyamlmerge
