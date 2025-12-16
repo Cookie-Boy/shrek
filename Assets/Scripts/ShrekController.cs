@@ -16,7 +16,7 @@ public class ShrekController : MonoBehaviour
     [SerializeField] private float groundCheckDistance = 0.2f;
     [SerializeField] private float rotationSpeed = 4f;
 
-    [Header("Jump Settings - ДЛЯ РЕЗКОГО ПРЫЖКА")]
+    [Header("Jump Settings")]
     [SerializeField] private float jumpForce = 15f;
     [SerializeField] private float fallMultiplier = 3.5f;
     [SerializeField] private float jumpCutMultiplier = 2f;
@@ -25,24 +25,34 @@ public class ShrekController : MonoBehaviour
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private LayerMask groundLayer;
 
-    [Header("Item Collection - Система сбора")]
-    [SerializeField] private float collectionRadius = 2f; // Радиус сбора
-    [SerializeField] private string itemTag = "Food"; // Тег собираемых предметов
-    [SerializeField] private AudioSource audioSource; // Для звуков
-    [SerializeField] private AudioClip eatSound; // Звук поедания
-    [SerializeField] private float eatSoundVolume = 0.7f; // Громкость звука
+    [Header("Item Collection")]
+    [SerializeField] private float collectionRadius = 2f;
+    [SerializeField] private string itemTag = "Food";
+    private int maxItemCount = 20;
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip eatSound;
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private float eatSoundVolume = 0.7f;
+    [SerializeField] private float jumpSoundVolume = 0.7f;
 
     private bool isRunning = false;
     private bool isJumping = false;
     private bool isOnGround = true;
     private bool isJumpKeyHeld = false;
+    private bool isTeleportAvailable = false;
+
+    public bool IsTeleportAvailable
+    {
+        get { return isTeleportAvailable; }
+        set { isTeleportAvailable = value; }
+    }
 
     private int foodEaten = 0;
 
-    // Для хранения ввода движения
     private Vector2 moveInput = Vector2.zero;
 
-    // Список для избежания повторного сбора одного объекта
     private HashSet<GameObject> collectedItems = new HashSet<GameObject>();
 
     void Start()
@@ -60,7 +70,6 @@ public class ShrekController : MonoBehaviour
             Debug.LogError("Rigidbody component not found!");
         }
 
-        // Инициализация AudioSource если нет
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -68,71 +77,53 @@ public class ShrekController : MonoBehaviour
             audioSource.volume = eatSoundVolume;
         }
 
-        // Настройка Rigidbody для резких движений
         SetupRigidbodyForSharpJump();
 
-        // Если не задана точка проверки земли, используем центр объекта
         if (groundCheckPoint == null)
         {
             groundCheckPoint = transform;
         }
 
-        // Обновляем UI
+        maxItemCount = GetTotalFoodCount();
         UpdateUI();
     }
 
     void SetupRigidbodyForSharpJump()
     {
-        rb.mass = 2f;               // Меньшая масса для более резкого отклика
-        rb.linearDamping = 0.5f;             // Меньшее сопротивление воздуха
-        rb.angularDamping = 0.5f;      // Меньшее сопротивление вращению
-        rb.useGravity = true;       // Включаем гравитацию
-        rb.constraints = RigidbodyConstraints.FreezeRotationX |
-                        RigidbodyConstraints.FreezeRotationZ;
+        rb.mass = 2f;
+        rb.linearDamping = 0.5f;
+        rb.angularDamping = 0.5f;
+        rb.useGravity = true;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     void Update()
     {
-        // Проверка земли
         CheckGround();
-
-        // Обработка ввода клавиатуры
         HandleKeyboardInput();
-
-        // Проверка сбора предметов (непрерывно во время движения)
         CheckForItems();
-
-        // Обновление анимаций
         UpdateAnimations();
-
-        // Движение
         MoveCharacter();
-
-        // Применяем дополнительную гравитацию для резкого падения
         ApplyJumpPhysics();
     }
 
     void FixedUpdate()
     {
-        // Физика прыжка в FixedUpdate для стабильности
         ApplyJumpPhysics();
     }
 
     void CheckGround()
     {
-        // Используем Raycast для проверки земли под ногами
         RaycastHit hit;
         Vector3 rayStart = groundCheckPoint.position;
         Vector3 rayDirection = Vector3.down;
 
-        // Учитываем размер персонажа
         float checkDistance = groundCheckDistance;
         if (GetComponent<Collider>() != null)
         {
             checkDistance += GetComponent<Collider>().bounds.extents.y;
         }
 
-        // Бросаем луч вниз для проверки земли
         bool hitGround = Physics.Raycast(rayStart, rayDirection, out hit, checkDistance, groundLayer);
 
         // Визуализация луча в редакторе (только в Play mode)
@@ -140,7 +131,6 @@ public class ShrekController : MonoBehaviour
 
         isOnGround = hitGround;
 
-        // Если мы падаем и касаемся земли, сбрасываем прыжок
         if (isOnGround && rb.linearVelocity.y <= 0.1f)
         {
             isJumping = false;
@@ -154,42 +144,34 @@ public class ShrekController : MonoBehaviour
 
         if (keyboard != null)
         {
-            // Собираем ввод движения в вектор
             moveInput = Vector2.zero;
 
-            // Стрелочки
             if (keyboard.upArrowKey.isPressed) moveInput.y += 1;
             if (keyboard.downArrowKey.isPressed) moveInput.y -= 1;
             if (keyboard.leftArrowKey.isPressed) moveInput.x -= 1;
             if (keyboard.rightArrowKey.isPressed) moveInput.x += 1;
 
-            // WASD (имеет приоритет)
             if (keyboard.wKey.isPressed) moveInput.y += 1;
             if (keyboard.sKey.isPressed) moveInput.y -= 1;
             if (keyboard.aKey.isPressed) moveInput.x -= 1;
             if (keyboard.dKey.isPressed) moveInput.x += 1;
 
-            // Нормализуем вектор, если длина > 1 (диагональное движение)
             if (moveInput.magnitude > 1f)
             {
                 moveInput.Normalize();
             }
 
-            // Проверяем, нужно ли бежать (есть ли ввод движения)
             bool shouldRun = moveInput.magnitude > 0.1f;
 
-            // Отслеживаем удержание кнопки прыжка
             isJumpKeyHeld = keyboard.spaceKey.isPressed;
 
-            // Обработка прыжка (нажатие)
             if (keyboard.spaceKey.wasPressedThisFrame && isOnGround && !isJumping)
             {
                 Jump();
             }
 
-            Debug.Log($"Jump?? {isJumping}, ground? {isOnGround}, space??? {keyboard.spaceKey.wasPressedThisFrame}");
+            //Debug.Log($"Jump?? {isJumping}, ground? {isOnGround}, space??? {keyboard.spaceKey.wasPressedThisFrame}");
 
-            // Обновляем состояние бега
             if (shouldRun != isRunning)
             {
                 isRunning = shouldRun;
@@ -203,12 +185,10 @@ public class ShrekController : MonoBehaviour
         {
             Vector3 velocity = rb.linearVelocity;
 
-            // УСИЛЕННАЯ ГРАВИТАЦИЯ ПРИ ПАДЕНИИ - для быстрого спуска
             if (velocity.y < 0)
             {
                 velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
             }
-            // КОРОТКИЕ ПРЫЖКИ - если отпустили кнопку раньше
             else if (velocity.y > 0 && !isJumpKeyHeld)
             {
                 velocity += Vector3.up * Physics.gravity.y * (jumpCutMultiplier - 1) * Time.deltaTime;
@@ -229,7 +209,6 @@ public class ShrekController : MonoBehaviour
 
     void MoveCharacter()
     {
-        // 1. ПОВОРОТ (A/D) - работает всегда
         if (Mathf.Abs(moveInput.x) > 0.1f)
         {
             float turnAmount = moveInput.x * rotationSpeed * Time.deltaTime * 100f;
@@ -255,7 +234,8 @@ public class ShrekController : MonoBehaviour
     {
         if (isOnGround)
         {
-            // ПЕРВЫЙ ВАРИАНТ: VelocityChange (самый резкий)
+            PlayJumpSound();
+
             Vector3 velocity = rb.linearVelocity;
             velocity.y = 0; // Сбрасываем вертикальную скорость
             rb.linearVelocity = velocity;
@@ -263,7 +243,6 @@ public class ShrekController : MonoBehaviour
 
             isJumping = true;
 
-            // Обновляем анимацию немедленно
             if (animator != null)
             {
                 animator.SetBool("isJumping", true);
@@ -273,9 +252,25 @@ public class ShrekController : MonoBehaviour
         }
     }
 
+    void PlayJumpSound()
+    {
+        if (jumpSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(jumpSound, jumpSoundVolume);
+        }
+        else if (jumpSound == null)
+        {
+            Debug.LogWarning("Jump sound is not assigned!");
+        }
+    }
+
+    private int GetTotalFoodCount()
+    {
+        return GameObject.FindGameObjectsWithTag(itemTag).Length;
+    }
+
     void CheckForItems()
     {
-        // Ищем все предметы с нужным тегом в радиусе
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, collectionRadius);
 
         foreach (var collider in hitColliders)
@@ -284,10 +279,8 @@ public class ShrekController : MonoBehaviour
             {
                 GameObject item = collider.gameObject;
 
-                // Проверяем, не собирали ли уже этот предмет
                 if (!collectedItems.Contains(item))
                 {
-                    // Нашли крысу/предмет - мгновенно "съедаем"
                     collectedItems.Add(item);
                     EatItem(item);
                 }
@@ -297,31 +290,35 @@ public class ShrekController : MonoBehaviour
 
     void EatItem(GameObject item)
     {
-        // Мгновенное поедание без остановки движения
-
-        // 1. Проигрываем звук (если есть)
-        if (eatSound != null && audioSource != null)
-        {
-            // Воспроизводим звук без прерывания текущих действий
-            audioSource.PlayOneShot(eatSound, eatSoundVolume);
-        }
-
-        // 2. Уничтожаем предмет (крысу) с небольшой задержкой для визуального эффекта
+        PlayEatSound();
         StartCoroutine(DestroyWithDelay(item, 0.05f));
-
-        // 3. Обновляем счёт
         foodEaten++;
         UpdateUI();
+        Debug.Log($"Ate some food! Total: {foodEaten}/{maxItemCount}");
 
-        // 4. Выводим в консоль (опционально)
-        Debug.Log($"Ate some food! Total: {foodEaten}");
+        if (foodEaten >= maxItemCount)
+        {
+            Debug.Log("All food collected!");
+            isTeleportAvailable = true;
+        }
+    }
+
+    void PlayEatSound()
+    {
+        if (eatSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(eatSound, eatSoundVolume);
+        }
+        else if (eatSound == null)
+        {
+            Debug.LogWarning("Eat sound is not assigned!");
+        }
     }
 
     System.Collections.IEnumerator DestroyWithDelay(GameObject obj, float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        // Убираем из списка собранных перед уничтожением
         if (collectedItems.Contains(obj))
         {
             collectedItems.Remove(obj);
@@ -334,13 +331,12 @@ public class ShrekController : MonoBehaviour
     {
         if (foodEatenText != null)
         {
-            foodEatenText.text = $"Eaten: {foodEaten}";
+            foodEatenText.text = $"Eaten: {foodEaten}/{maxItemCount}";
         }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        // Быстрая проверка приземления
         if (collision.contacts.Length > 0 && rb.linearVelocity.y <= 0.1f)
         {
             isJumping = false;
@@ -350,7 +346,7 @@ public class ShrekController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Альтернативный способ сбора через триггер (если нужно)
+        // Альтернативный способ сбора через триггер
         if (other.CompareTag(itemTag) && !collectedItems.Contains(other.gameObject))
         {
             collectedItems.Add(other.gameObject);
@@ -373,7 +369,6 @@ public class ShrekController : MonoBehaviour
             Gizmos.DrawLine(groundCheckPoint.position, groundCheckPoint.position + Vector3.down * groundCheckDistance);
         }
 
-        // Рисуем радиус сбора
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, collectionRadius);
     }
