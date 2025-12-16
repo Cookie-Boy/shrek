@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!82 &322252313 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4775637440372336672, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+  m_PrefabInstance: {fileID: 570146886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &406362527 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1051456453413174702, guid: 52d889e25a1762844a4dc5b14ed6cd2f, type: 3}
@@ -296,6 +301,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShrekModel
       objectReference: {fileID: 0}
+    - target: {fileID: 8345148192296572780, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: eatSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cf987ed615e94364eac6a5cd7ef60e27, type: 3}
+    - target: {fileID: 8345148192296572780, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 01381e6eb8e133d4a869eb12adc51f72, type: 3}
+    - target: {fileID: 8345148192296572780, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 322252313}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

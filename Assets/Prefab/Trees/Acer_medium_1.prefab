@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6486687126118307293}
   - component: {fileID: 1353726176761837056}
   - component: {fileID: 7043641313438381292}
+  - component: {fileID: 5672290752402651407}
   m_Layer: 0
   m_Name: Acer_medium_1
   m_TagString: Untagged
@@ -90,3 +91,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5672290752402651407
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2737855044753414465}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4481811980366606599, guid: 70d50a864607d094e95c2b092b70c173, type: 3}
