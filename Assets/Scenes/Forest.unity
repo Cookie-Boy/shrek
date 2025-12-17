@@ -213,76 +213,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daf9abd99cab135488418fba617f6ebf, type: 3}
---- !u!1001 &177297773
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 531.586
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 28.93243
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 216.324
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558998541508982539, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4192792969108450737, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_Name
-      value: ShrekModel
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345148192296572780, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: eatSound
-      value: 
-      objectReference: {fileID: 8300000, guid: cf987ed615e94364eac6a5cd7ef60e27, type: 3}
-    - target: {fileID: 8345148192296572780, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: jumpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 01381e6eb8e133d4a869eb12adc51f72, type: 3}
-    - target: {fileID: 8345148192296572780, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 1169414445}
-    m_RemovedComponents:
-    - {fileID: 6589958446922820168, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
 --- !u!4 &177596958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5310303316638626329, guid: 68e18ae2f5f784d4da00e6a4b84f688c, type: 3}
@@ -1502,11 +1432,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1054809645748079046, guid: daf9abd99cab135488418fba617f6ebf, type: 3}
   m_PrefabInstance: {fileID: 384598934}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &757696896 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5310303316638626329, guid: 68e18ae2f5f784d4da00e6a4b84f688c, type: 3}
-  m_PrefabInstance: {fileID: 392338249}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &710128024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1615,6 +1540,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!4 &757696896 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5310303316638626329, guid: 68e18ae2f5f784d4da00e6a4b84f688c, type: 3}
+  m_PrefabInstance: {fileID: 392338249}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &837419236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1759,6 +1689,87 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e918fbf09cafd864cb04940bcb09bf30, type: 3}
+--- !u!1001 &843750787
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: sceneName
+      value: City
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: shrekRoot
+      value: 
+      objectReference: {fileID: 1510116050}
+    - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: teleportSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1034d637b043b2448b14e177745e408b, type: 3}
+    - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 1510116049}
+    - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: shrekController
+      value: 
+      objectReference: {fileID: 1510116051}
+    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 514.4784
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 28.93238
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 527.2985
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687116061921068663, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: m_Name
+      value: ToiletPortal
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
 --- !u!1001 &853911324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1897,87 +1908,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf20e6bea435d6945815cdac06318f4f, type: 3}
---- !u!1001 &843750787
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: sceneName
-      value: City
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: shrekRoot
-      value: 
-      objectReference: {fileID: 1510116050}
-    - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: teleportSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 1034d637b043b2448b14e177745e408b, type: 3}
-    - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: cameraTransform
-      value: 
-      objectReference: {fileID: 1510116049}
-    - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: shrekController
-      value: 
-      objectReference: {fileID: 1510116051}
-    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 514.4784
-      objectReference: {fileID: 0}
-    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 28.93238
-      objectReference: {fileID: 0}
-    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 527.2985
-      objectReference: {fileID: 0}
-    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7687116061921068663, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
-      propertyPath: m_Name
-      value: ToiletPortal
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
 --- !u!1 &866588179
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,11 +2321,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85c8c0bffc8c5374284dd02004977110, type: 3}
---- !u!82 &1169414445 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4775637440372336672, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-  m_PrefabInstance: {fileID: 177297773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1182409611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2422693741463622540, guid: cf20e6bea435d6945815cdac06318f4f, type: 3}
@@ -3248,6 +3173,88 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6486687126118307293, guid: 7453bda7a282a8b4b95fb958dc5c969c, type: 3}
   m_PrefabInstance: {fileID: 1043221111}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1510116048
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2537035895741863979, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: foodEatenText
+      value: 
+      objectReference: {fileID: 710128025}
+    - target: {fileID: 7425703126094217033, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_Name
+      value: ShrekModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 495.86688
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 28.93244
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 587.57983
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+--- !u!4 &1510116049 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1729712704765765304, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+  m_PrefabInstance: {fileID: 1510116048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1510116050 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5381140606018356624, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+  m_PrefabInstance: {fileID: 1510116048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1510116051 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2537035895741863979, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+  m_PrefabInstance: {fileID: 1510116048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f617e10028bede048b4ca272c338b67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShrekController
 --- !u!4 &1521233164 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5310303316638626329, guid: 68e18ae2f5f784d4da00e6a4b84f688c, type: 3}
@@ -3753,88 +3760,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6486687126118307293, guid: 7453bda7a282a8b4b95fb958dc5c969c, type: 3}
   m_PrefabInstance: {fileID: 587777582}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1510116048
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2537035895741863979, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: foodEatenText
-      value: 
-      objectReference: {fileID: 710128025}
-    - target: {fileID: 7425703126094217033, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_Name
-      value: ShrekModel
-      objectReference: {fileID: 0}
-    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 495.86688
-      objectReference: {fileID: 0}
-    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 28.93244
-      objectReference: {fileID: 0}
-    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 587.57983
-      objectReference: {fileID: 0}
-    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
---- !u!4 &1510116049 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1729712704765765304, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-  m_PrefabInstance: {fileID: 1510116048}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1510116050 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5381140606018356624, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-  m_PrefabInstance: {fileID: 1510116048}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1510116051 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2537035895741863979, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-  m_PrefabInstance: {fileID: 1510116048}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f617e10028bede048b4ca272c338b67c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShrekController
 --- !u!1 &1791428691
 GameObject:
   m_ObjectHideFlags: 0
@@ -4748,7 +4673,6 @@ SceneRoots:
   - {fileID: 1510116048}
   - {fileID: 837419236}
   - {fileID: 678332780}
-  - {fileID: 177297773}
   - {fileID: 1767820616}
   - {fileID: 60298824445829613}
   - {fileID: 843750787}
