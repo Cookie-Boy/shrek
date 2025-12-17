@@ -760,6 +760,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9171455000932308264, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: foodEatenText
+      value: 
+      objectReference: {fileID: 1104210744}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -775,17 +779,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5381140606018356624, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
   m_PrefabInstance: {fileID: 712180852}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &712180855 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2537035895741863979, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
-  m_PrefabInstance: {fileID: 712180852}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f617e10028bede048b4ca272c338b67c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShrekController
 --- !u!82 &712180857 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 8351869610923366910, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
@@ -1164,7 +1157,7 @@ PrefabInstance:
     - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: shrekController
       value: 
-      objectReference: {fileID: 712180855}
+      objectReference: {fileID: 0}
     - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.6
