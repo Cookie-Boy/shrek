@@ -24,9 +24,10 @@ public class ShrekController : MonoBehaviour
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private CapsuleCollider capsule;
 
     [Header("Item Collection")]
-    [SerializeField] private float collectionRadius = 2f;
+    [SerializeField] private float collectionRadius = 10f;
     [SerializeField] private string itemTag = "Food";
     private int maxItemCount = 20;
 
@@ -34,19 +35,28 @@ public class ShrekController : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip eatSound;
     [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip fullEatenSound;
     [SerializeField] private float eatSoundVolume = 0.7f;
     [SerializeField] private float jumpSoundVolume = 0.7f;
+    [SerializeField] private float fullEatenSoundVolume = 0.7f;
 
     private bool isRunning = false;
     private bool isJumping = false;
     private bool isOnGround = true;
     private bool isJumpKeyHeld = false;
     private bool isTeleportAvailable = false;
+    private bool isKeyboardBlocked = false;
 
     public bool IsTeleportAvailable
     {
         get { return isTeleportAvailable; }
         set { isTeleportAvailable = value; }
+    }
+
+    public bool IsKeyboardBlocked
+    {
+        get { return isKeyboardBlocked; }
+        set { isKeyboardBlocked = value; }
     }
 
     private int foodEaten = 0;
@@ -94,7 +104,6 @@ public class ShrekController : MonoBehaviour
         rb.linearDamping = 0.5f;
         rb.angularDamping = 0.5f;
         rb.useGravity = true;
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     void Update()
@@ -140,6 +149,9 @@ public class ShrekController : MonoBehaviour
 
     void HandleKeyboardInput()
     {
+        if (isKeyboardBlocked)
+            return;
+
         Keyboard keyboard = Keyboard.current;
 
         if (keyboard != null)
@@ -170,7 +182,7 @@ public class ShrekController : MonoBehaviour
                 Jump();
             }
 
-            //Debug.Log($"Jump?? {isJumping}, ground? {isOnGround}, space??? {keyboard.spaceKey.wasPressedThisFrame}");
+            Debug.Log($"Jump?? {isJumping}, ground? {isOnGround}, space??? {keyboard.spaceKey.wasPressedThisFrame}");
 
             if (shouldRun != isRunning)
             {
@@ -271,7 +283,9 @@ public class ShrekController : MonoBehaviour
 
     void CheckForItems()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, collectionRadius);
+        Vector3 center = capsule.transform.TransformPoint(capsule.center);
+
+        Collider[] hitColliders = Physics.OverlapSphere(center, collectionRadius);
 
         foreach (var collider in hitColliders)
         {
@@ -296,10 +310,11 @@ public class ShrekController : MonoBehaviour
         UpdateUI();
         Debug.Log($"Ate some food! Total: {foodEaten}/{maxItemCount}");
 
-        if (foodEaten >= maxItemCount)
+        if (foodEaten == maxItemCount)
         {
             Debug.Log("All food collected!");
             isTeleportAvailable = true;
+            PlayFullEatenSound();
         }
     }
 
@@ -312,6 +327,18 @@ public class ShrekController : MonoBehaviour
         else if (eatSound == null)
         {
             Debug.LogWarning("Eat sound is not assigned!");
+        }
+    }
+
+    void PlayFullEatenSound()
+    {
+        if (fullEatenSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(fullEatenSound, fullEatenSoundVolume);
+        }
+        else if (fullEatenSound == null)
+        {
+            Debug.LogWarning("Full eaten sound is not assigned!");
         }
     }
 

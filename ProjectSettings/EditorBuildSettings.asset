@@ -8,6 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Home.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Forest.unity
+    guid: 724c4b433d0c46846ba4a250563a21d4
+  - enabled: 1
+    path: Assets/Scenes/Castle.unity
+    guid: 082eceb85e7dcc84882bbb23a33f814e
+  - enabled: 1
+    path: Assets/Scenes/City.unity
+    guid: 2f242729c013c4e469a1fb1ad997a97d
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: cdfb0a91ba8c787499e5c00402e0b225, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
