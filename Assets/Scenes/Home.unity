@@ -712,13 +712,17 @@ PrefabInstance:
       propertyPath: collectionRadius
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3074552503492416769, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_Name
+      value: ShrekModel
+      objectReference: {fileID: 0}
     - target: {fileID: 4562498366765250862, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7425703126094217033, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
       propertyPath: m_Name
-      value: ShrekModel
+      value: Shrek
       objectReference: {fileID: 0}
     - target: {fileID: 7802122463129249267, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
       propertyPath: m_LocalPosition.x
@@ -784,6 +788,17 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 8351869610923366910, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
   m_PrefabInstance: {fileID: 712180852}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &712180861 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2537035895741863979, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+  m_PrefabInstance: {fileID: 712180852}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f617e10028bede048b4ca272c338b67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShrekController
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,7 +1172,7 @@ PrefabInstance:
     - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: shrekController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 712180861}
     - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.6

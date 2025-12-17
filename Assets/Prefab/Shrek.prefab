@@ -128,11 +128,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4510621925212203239, guid: 12c560a7c73a9c648a129dd72799133d, type: 3}
       propertyPath: m_Name
-      value: VisualShrek
+      value: ShrekModel
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 12c560a7c73a9c648a129dd72799133d, type: 3}
       propertyPath: m_Name
-      value: ShrekModel
+      value: Shrek
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -404,9 +404,4 @@ CapsuleCollider:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 12c560a7c73a9c648a129dd72799133d, type: 3}
   m_PrefabInstance: {fileID: 7767597164868878872}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &614957701598626520 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2515124072411157348, guid: abc078d0ab147a64a9cc405c72c54958, type: 3}
-  m_PrefabInstance: {fileID: 3057733873400320444}
   m_PrefabAsset: {fileID: 0}

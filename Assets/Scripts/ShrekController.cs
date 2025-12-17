@@ -216,6 +216,8 @@ public class ShrekController : MonoBehaviour
         {
             animator.SetBool("isRunning", isRunning);
             animator.SetBool("isJumping", isJumping);
+            Debug.Log($"Running is {isRunning}");
+
         }
     }
 
