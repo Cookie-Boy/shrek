@@ -2220,6 +2220,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb185ff0ac67ba41bcd69881546c68f, type: 3}
+--- !u!114 &710128025 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8483281587374651894, guid: ecb185ff0ac67ba41bcd69881546c68f, type: 3}
+  m_PrefabInstance: {fileID: 710128024}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &728372954 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5290580664847560076, guid: e4d8b927d7f248749a3fe7114af2d0c9, type: 3}
@@ -2509,19 +2520,19 @@ PrefabInstance:
       objectReference: {fileID: 1020075683}
     - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 514.4784
+      value: 544.7
       objectReference: {fileID: 0}
     - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.93238
+      value: 28.53
       objectReference: {fileID: 0}
     - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 527.2985
+      value: 692.3
       objectReference: {fileID: 0}
     - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2529,11 +2540,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2541,7 +2552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 4723091768833842821, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -3076,6 +3087,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2537035895741863979, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: foodEatenText
+      value: 
+      objectReference: {fileID: 710128025}
     - target: {fileID: 7425703126094217033, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
       propertyPath: m_Name
       value: Shrek

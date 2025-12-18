@@ -216,6 +216,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb185ff0ac67ba41bcd69881546c68f, type: 3}
+--- !u!114 &143673850 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8483281587374651894, guid: ecb185ff0ac67ba41bcd69881546c68f, type: 3}
+  m_PrefabInstance: {fileID: 143673849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &561379586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -366,6 +377,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2537035895741863979, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: foodEatenText
+      value: 
+      objectReference: {fileID: 143673850}
     - target: {fileID: 7425703126094217033, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
       propertyPath: m_Name
       value: Shrek
