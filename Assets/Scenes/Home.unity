@@ -2357,6 +2357,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 712180857}
     - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
+      propertyPath: spinIntensity
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026436863508280116, guid: 5c08146dc602df94dba03924c5344a59, type: 3}
       propertyPath: teleportSound
       value: 
       objectReference: {fileID: 8300000, guid: 1034d637b043b2448b14e177745e408b, type: 3}
