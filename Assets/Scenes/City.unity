@@ -6077,6 +6077,26 @@ PrefabInstance:
       propertyPath: foodEatenText
       value: 
       objectReference: {fileID: 143673850}
+    - target: {fileID: 5356407782534705021, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_Height
+      value: 12.18731
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356407782534705021, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_Radius
+      value: 2.833614
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356407782534705021, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_Center.x
+      value: 0.1618917
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356407782534705021, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_Center.y
+      value: 6.040892
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356407782534705021, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
+      propertyPath: m_Center.z
+      value: 0.7787306
+      objectReference: {fileID: 0}
     - target: {fileID: 7425703126094217033, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
       propertyPath: m_Name
       value: Shrek
@@ -6121,7 +6141,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4562498366765250862, guid: 77a8e626ed73420499bc11e754955a99, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
