@@ -3999,6 +3999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundMusic
   musicTracks:
   - {fileID: 8300000, guid: 9e2b71b1bc3ccf540aacb46e317ba65b, type: 3}
+  - {fileID: 8300000, guid: 1a97b2ff3f495b748bb29f5b0694d23e, type: 3}
   - {fileID: 8300000, guid: d01ee2c069b41634892e6f442714a93c, type: 3}
   volume: 0.1
 --- !u!4 &2031177523

@@ -10,22 +10,27 @@ public class Teleporter : MonoBehaviour
 
     [Header("Teleport Effects")]
     [SerializeField] private Transform shrekRoot;
-    [SerializeField] private float scaleDownDuration = 0.5f;
+    [SerializeField] private float scaleDownDuration = 2f;
     [SerializeField] private Transform cameraTransform;
-    [SerializeField] private float shakeDuration = 0.3f;
-    [SerializeField] private float shakeStrength = 0.15f;
+    [SerializeField] private float rotationDuration = 0.8f;
+    [SerializeField] private float spinIntensity = 720f; // градусов в секунду
+    [SerializeField] private float vortexIntensity = 360f; // для закручивания в воронку
 
     [Header("Audio Settings")]
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip teleportSound;
+    [SerializeField] private AudioClip teleportSound; // Это звук смыва унитаза
     [SerializeField] private float teleportSoundVolume = 0.7f;
 
     private bool isTeleporting = false;
+    private Transform rotationTarget; // Объект, который будет вращаться
 
     void Start()
     {
         if (shrekController == null)
             shrekController = FindAnyObjectByType<ShrekController>();
+        
+        // Определяем целевой объект для вращения
+        rotationTarget = shrekRoot.transform.root;
     }
 
     void OnTriggerEnter(Collider other)
@@ -47,18 +52,20 @@ public class Teleporter : MonoBehaviour
     {
         isTeleporting = true;
 
+        // Запускаем вращение отдельно от уменьшения
+        StartCoroutine(ContinuousRotation());
+        yield return ScaleDownShrek();
+
+        // Проигрываем звук смыва (teleportSound)
         if (teleportSound != null && audioSource != null)
             audioSource.PlayOneShot(teleportSound, teleportSoundVolume);
 
-        StartCoroutine(ScreenShake());
-        yield return ScaleDownShrek();
-
+        // Ждем пока закончится звук смыва
         float delay = teleportSound != null ? teleportSound.length : 0f;
         yield return new WaitForSeconds(delay);
 
         SceneManager.LoadScene(sceneName);
     }
-
 
     IEnumerator ScaleDownShrek()
     {
@@ -72,28 +79,30 @@ public class Teleporter : MonoBehaviour
             float k = t / scaleDownDuration;
 
             shrekRoot.localScale = Vector3.Lerp(startScale, endScale, k);
+            
             yield return null;
         }
 
         shrekRoot.localScale = Vector3.zero;
     }
 
-    IEnumerator ScreenShake()
+    IEnumerator ContinuousRotation()
     {
-        Vector3 originalPos = cameraTransform.localPosition;
-        float t = 0f;
+        // Вращение будет продолжаться даже после уменьшения модели
+        float totalRotationTime = scaleDownDuration + (teleportSound != null ? teleportSound.length : 0f);
+        float elapsedTime = 0f;
 
-        while (t < shakeDuration)
+        while (elapsedTime < totalRotationTime)
         {
-            t += Time.deltaTime;
-
-            Vector3 offset = Random.insideUnitSphere * shakeStrength;
-            cameraTransform.localPosition = originalPos + offset;
-
+            elapsedTime += Time.deltaTime;
+            
+            // Вращаем корневой объект
+            if (rotationTarget != null)
+            {
+                rotationTarget.Rotate(0f, spinIntensity * Time.deltaTime, 0f, Space.World);
+            }
+            
             yield return null;
         }
-
-        cameraTransform.localPosition = originalPos;
     }
-
 }
